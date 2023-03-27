@@ -4,8 +4,8 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+  daisyui: {
+    themes: false,
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
