@@ -18,7 +18,7 @@ const Order = () => {
     }
 
     return (
-        <div className='flex flex-col lg:flex-row lg:justify-between'>
+        <div className='flex flex-col gap-6 lg:gap-0 lg:flex-row lg:justify-between'>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:basis-4/5 lg:m-24'>
                 {
                     products.slice(0, 12).map((product) => <Product product={product} key={product.id} handleAddToCard={handleAddToCard} />)

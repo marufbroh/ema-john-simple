@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OrderSummary = ({ cart, setCart }) => {
-    console.log(cart)
+    // console.log(cart)
     let totalPrice = 0;
     let totalShipping = 0;
     for (const product of cart) {
