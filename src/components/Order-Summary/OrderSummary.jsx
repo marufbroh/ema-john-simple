@@ -1,20 +1,24 @@
 import React from 'react';
 
-const OrderSummary = ({ cart }) => {
-    // console.log(cart)
+const OrderSummary = ({ cart, setCart }) => {
+    console.log(cart)
     let totalPrice = 0;
+    let totalShipping = 0;
     for (const product of cart) {
         totalPrice = totalPrice + product.price
+        totalShipping = totalShipping + product.shipping
     }
+    const taxTotal = totalPrice * 7 / 100;
+    const grandTotal = totalPrice + totalShipping + taxTotal;
     return (
         <>
             <h2 className='font-bold text-3xl text-center my-6'>Order Summary</h2>
             <div className='ml-6 flex flex-col gap-4'>
                 <p>Selected Items: {cart.length}</p>
-                <p>Total Price: ${totalPrice}</p>
-                <p>Total Shipping Charge: $</p>
-                <p>Tax: $</p>
-                <h4>Grand Total: $</h4>
+                <p>Total Price: ${totalPrice.toFixed(2)}</p>
+                <p>Total Shipping Charge: ${totalShipping.toFixed(2)}</p>
+                <p>Tax: ${taxTotal.toFixed(2)}</p>
+                <h4>Grand Total: ${grandTotal.toFixed(2)}</h4>
             </div>
             <div className='my-12 text-center'>
                 <button onClick={() => setCart([])} className='btn btn-error mb-6'>Clear Cart <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-2">

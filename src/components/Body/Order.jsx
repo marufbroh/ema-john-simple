@@ -21,11 +21,11 @@ const Order = () => {
         <div className='flex flex-col lg:flex-row lg:justify-between'>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:basis-4/5 lg:m-24'>
                 {
-                    products.slice(0, 6).map((product) => <Product product={product} key={product.id} handleAddToCard={handleAddToCard} />)
+                    products.slice(0, 12).map((product) => <Product product={product} key={product.id} handleAddToCard={handleAddToCard} />)
                 }
             </div>
-            <div className='lg:basis-1/5 h-screen bg-slate-700 text-white'>
-                <OrderSummary cart={cart} />
+            <div className='lg:basis-1/5 h-screen bg-slate-700 text-white sticky top-0'>
+                <OrderSummary cart={cart} setCart={setCart} />
 
             </div>
         </div>
