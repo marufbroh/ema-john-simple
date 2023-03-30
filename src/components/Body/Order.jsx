@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart } from '../../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
 import OrderSummary from '../Order-Summary/OrderSummary';
 import Product from '../Product/Product';
 
 const Order = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
-    console.log(cart)
+    // console.log(cart)
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
 
-    useEffect( () => {
+    useEffect(() => {
         const storedCart = getShoppingCart()
-        console.log(storedCart)
-    }, [])
+        const savedCart = [];
+        for (const id in storedCart) {
+            const addedProducts = products.find(product => product.id === id)
+            if (addedProducts) {
+                const quantity = storedCart[id]
+                addedProducts.quantity = quantity;
+                savedCart.push(addedProducts)
+            }
+        }
+        setCart(savedCart)
+    }, [products])
 
     const handleAddToCard = (product) => {
         const newCart = [...cart, product];
@@ -24,6 +33,11 @@ const Order = () => {
         // console.log(product.id);
         addToDb(product.id)
 
+    }
+
+    const handleClearCart = () => {
+        deleteShoppingCart()
+        setCart([])
     }
 
     return (
@@ -34,7 +48,7 @@ const Order = () => {
                 }
             </div>
             <div className='lg:basis-1/5 h-screen bg-slate-700 text-white sticky top-0'>
-                <OrderSummary cart={cart} setCart={setCart} />
+                <OrderSummary cart={cart} handleClearCart={handleClearCart} />
 
             </div>
         </div>
