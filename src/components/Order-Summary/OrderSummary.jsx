@@ -6,7 +6,10 @@ const OrderSummary = ({ cart, handleClearCart }) => {
     let totalShipping = 0;
     let totalQuantity = 0;
     for (const product of cart) {
-        totalPrice = (totalPrice + product.price)
+        if (product.quantity === 0) {
+            product.quantity = 1;
+        }
+        totalPrice = (totalPrice + product.price) * product.quantity
         totalShipping = (totalShipping + product.shipping)
         totalQuantity = (totalQuantity + product.quantity)
     }
@@ -16,7 +19,7 @@ const OrderSummary = ({ cart, handleClearCart }) => {
         <>
             <h2 className='font-bold text-3xl text-center my-6'>Order Summary</h2>
             <div className='ml-6 flex flex-col gap-4'>
-                <p>Selected Items: {cart.length}</p>
+                <p>Selected Items: {totalQuantity}</p>
                 <p>Total Price: ${totalPrice.toFixed(2)}</p>
                 <p>Total Shipping Charge: ${totalShipping.toFixed(2)}</p>
                 <p>Tax: ${taxTotal.toFixed(2)}</p>
