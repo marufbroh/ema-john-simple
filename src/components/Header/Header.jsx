@@ -1,17 +1,17 @@
 import React from 'react';
 import logo from '../../images/Logo.svg'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
         <nav className='flex justify-between py-4 px-4 lg:px-32 items-center' style={{ backgroundColor: '#1C2B35' }}>
-            <img src={logo} alt="" />
+            <Link to={"/"}><img src={logo} alt="" /></Link>
             <div className='text-white flex flex-col lg:flex-row lg:gap-6'>
                 <NavLink
                     to={"/"}
                     className={({ isActive }) =>
                         isActive
-                            ? "text-yellow-500"
+                            ? "text-orange-300"
                             : ""
                     }
                 >
@@ -21,7 +21,7 @@ const Header = () => {
                     to={"/order-review"}
                     className={({ isActive }) =>
                         isActive
-                            ? "text-yellow-500"
+                            ? "text-orange-300"
                             : ""
                     }
                 >
@@ -31,7 +31,7 @@ const Header = () => {
                     to={"/manage-inventory"}
                     className={({ isActive }) =>
                         isActive
-                            ? "text-yellow-500"
+                            ? "text-orange-300"
                             : ""
                     }
                 >
@@ -41,7 +41,7 @@ const Header = () => {
                     to={"/login"}
                     className={({ isActive }) =>
                         isActive
-                            ? "text-yellow-500"
+                            ? "text-orange-300"
                             : ""
                     }
                 >

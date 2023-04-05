@@ -10,6 +10,7 @@ import Order from './components/Body/Order';
 import OrderReview from './components/Body/OrderReview';
 import ManageInventory from './components/Body/ManageInventory';
 import Login from './components/Body/Login';
+import cartProductsLoader from './loaders/cartProductsLoader';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'order-review',
-        element: <OrderReview />
+        element: <OrderReview />,
+        loader: cartProductsLoader
       },
       {
         path: 'manage-inventory',
