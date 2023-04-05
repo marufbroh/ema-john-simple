@@ -5,8 +5,9 @@ import Product from '../Product/Product';
 
 const Order = () => {
     const [products, setProducts] = useState([]);
+    // Etar man kivabe change holo unclear
+    // console.log(products)
     const [cart, setCart] = useState([]);
-    // console.log(cart)
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
@@ -28,7 +29,21 @@ const Order = () => {
     }, [products])
 
     const handleAddToCard = (product) => {
-        const newCart = [...cart, product];
+        // ager product er quantity thaika jai
+        console.log(product);
+        let newCart = [];
+        const exists = cart.find(pd => pd.id === product.id);
+        if (exists) {
+            exists.quantity = exists.quantity + 1;
+            const remaining = cart.filter(pd => pd.id !== product.id);
+            newCart = [...remaining, exists]
+        }
+        else {
+            product.quantity = 1;
+            newCart = [...cart, product]
+        };
+
+
         setCart(newCart)
         // console.log(product.id);
         addToDb(product.id)
@@ -44,7 +59,7 @@ const Order = () => {
         <div className='flex flex-col gap-6 lg:gap-0 lg:flex-row lg:justify-between'>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:basis-4/5 lg:m-24'>
                 {
-                    products.slice(0, 12).map((product) => <Product product={product} key={product.id} />)
+                    products.slice(0, 12).map((product) => <Product product={product} key={product.id} handleAddToCard={handleAddToCard} />)
                 }
             </div>
             <div className='lg:basis-1/5 lg:h-screen bg-slate-700 text-white sticky top-0'>
