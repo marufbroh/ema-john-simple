@@ -6,12 +6,15 @@ import Product from '../Product/Product';
 const Order = () => {
     const [products, setProducts] = useState([]);
     // Etar man kivabe change holo unclear
-    // console.log(products)
+    console.log(products)
     const [cart, setCart] = useState([]);
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => {
+                console.log({data})
+                setProducts(data)
+            })
     }, []);
 
     useEffect(() => {
