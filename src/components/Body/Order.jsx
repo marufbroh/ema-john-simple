@@ -6,18 +6,20 @@ import Product from '../Product/Product';
 const Order = () => {
     const [products, setProducts] = useState([]);
     // Etar man kivabe change holo unclear
-    console.log(products)
+    // console.log(products)
     const [cart, setCart] = useState([]);
+
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
             .then(data => {
-                console.log({data})
+                // console.log({data})
                 setProducts(data)
             })
     }, []);
 
     useEffect(() => {
+        // console.log(products);
         const storedCart = getShoppingCart()
         const savedCart = [];
         for (const id in storedCart) {
@@ -29,7 +31,7 @@ const Order = () => {
             }
         }
         setCart(savedCart)
-    }, [products])
+    }, [products]);
 
     const handleAddToCard = (product) => {
         // console.log(product);
@@ -52,8 +54,7 @@ const Order = () => {
         setCart(newCart)
         // console.log(product.id);
         addToDb(product.id)
-
-    }
+    };
 
     // const handleClearCart = () => {
     //     deleteShoppingCart()
