@@ -7,13 +7,14 @@ const OrderSummary = ({ cart }) => {
     let totalQuantity = 0;
     // console.log(totalQuantity);
     for (const product of cart) {
+        // console.log(product.quantity);
         // product.quantity = product.quantity || 1
         // if (product.quantity === 0) {
         //     product.quantity = 1;
         // }
-        totalPrice = (totalPrice + product.price) * product.quantity
-        totalShipping = (totalShipping + product.shipping)
-        totalQuantity = (totalQuantity + product.quantity)
+        totalPrice = totalPrice + product.price * product.quantity
+        totalShipping = totalShipping + product.shipping
+        totalQuantity = totalQuantity + product.quantity
     };
 
     const taxTotal = totalPrice * 7 / 100;

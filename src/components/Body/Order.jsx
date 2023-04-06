@@ -29,8 +29,10 @@ const Order = () => {
     }, [products])
 
     const handleAddToCard = (product) => {
+        // console.log(product);
         // ager product er quantity thaika jai
-        console.log(product);
+        // console.log(product);
+        // let newCart = [...cart, product]
         let newCart = [];
         const exists = cart.find(pd => pd.id === product.id);
         if (exists) {
