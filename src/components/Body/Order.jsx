@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
 import OrderSummary from '../Order-Summary/OrderSummary';
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 const Order = () => {
     const [products, setProducts] = useState([]);
@@ -57,8 +58,8 @@ const Order = () => {
     };
 
     const handleClearCart = () => {
-        deleteShoppingCart()
         setCart([])
+        deleteShoppingCart()
     }
 
     return (
@@ -69,7 +70,10 @@ const Order = () => {
                 }
             </div>
             <div className='lg:basis-1/5 lg:h-screen bg-slate-700 text-white sticky top-0'>
-                <OrderSummary cart={cart} handleClearCart={handleClearCart} />
+                <OrderSummary cart={cart} handleClearCart={handleClearCart}><Link to="/order-review"><button className='btn btn-warning'>Review Order<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                </svg>
+                </button></Link></OrderSummary>
 
             </div>
         </div>

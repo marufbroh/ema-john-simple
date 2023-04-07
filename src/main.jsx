@@ -11,6 +11,7 @@ import OrderReview from './components/Body/OrderReview';
 import ManageInventory from './components/Body/ManageInventory';
 import Login from './components/Body/Login';
 import cartProductsLoader from './loaders/cartProductsLoader';
+import Checkout from './components/Body/Checkout';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         loader: cartProductsLoader
       },
       {
+        path: 'checkout',
+        element: <Checkout />,
+      },
+      {
         path: 'manage-inventory',
         element: <ManageInventory />
       },
@@ -40,6 +45,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
   // </React.StrictMode>,
 )
