@@ -56,10 +56,10 @@ const Order = () => {
         addToDb(product.id)
     };
 
-    // const handleClearCart = () => {
-    //     deleteShoppingCart()
-    //     setCart([])
-    // }
+    const handleClearCart = () => {
+        deleteShoppingCart()
+        setCart([])
+    }
 
     return (
         <div className='flex flex-col gap-6 lg:gap-0 lg:flex-row lg:justify-between'>
@@ -69,7 +69,7 @@ const Order = () => {
                 }
             </div>
             <div className='lg:basis-1/5 lg:h-screen bg-slate-700 text-white sticky top-0'>
-                <OrderSummary cart={cart} />
+                <OrderSummary cart={cart} handleClearCart={handleClearCart} />
 
             </div>
         </div>
