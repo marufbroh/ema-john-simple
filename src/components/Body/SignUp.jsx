@@ -10,6 +10,7 @@ const SignUp = () => {
     const handleSignUp = (event) => {
         event.preventDefault()
         setError("")
+        setSuccess("")
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -28,7 +29,7 @@ const SignUp = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                setSuccess("User Logged Successfully")
+                setSuccess("User Signup Successfully")
                 form.reset()
             })
             .catch(error => {
