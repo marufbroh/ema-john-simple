@@ -1,11 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 
 const Login = () => {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
+    const [show, setShow] = useState(false)
     const { signInUser } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    // console.log(location);
+    const from = location.state?.from?.pathname || "/";
+
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -16,15 +22,16 @@ const Login = () => {
         const password = form.password.value;
 
         signInUser(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            setSuccess("User Logged Successfully")
-            form.reset()
-        })
-        .catch(error => {
-            setError(error.message)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                // console.log(loggedUser);
+                setSuccess("User Logged Successfully")
+                form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                setError(error.message)
+            })
 
     }
 
@@ -55,9 +62,14 @@ const Login = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             id="password"
                             name="password"
-                            type="password"
+                            type={show? "text" : "password"}
                             placeholder="Enter your password"
                         />
+                        <p onClick={() => setShow(!show)} type='button'>
+                            {
+                                show ? <small>Hide Password</small> : <small>Show Password</small>
+                            }
+                        </p>
                     </div>
                     {error && <div className="mb-4 text-center">
                         <p className='text-red-600'>{error}</p>
