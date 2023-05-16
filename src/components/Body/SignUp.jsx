@@ -15,7 +15,7 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
-        console.log(email, password, confirmPassword);
+        // console.log(email, password, confirmPassword);
         if (password !== confirmPassword) {
             setError("Password not matched")
             return
@@ -28,7 +28,7 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 setSuccess("User Signup Successfully")
                 form.reset()
             })
