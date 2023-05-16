@@ -12,7 +12,7 @@ const OrderReview = () => {
     // handleClearCart={handleClearCart}
 
     const handleRemoveFromCart = (id) => {
-        const remainingCarts = cart.filter(product => product.id !== id)
+        const remainingCarts = cart.filter(product => product._id !== id)
         setCart(remainingCarts)
         removeFromDb(id)
     }
@@ -26,7 +26,7 @@ const OrderReview = () => {
         <div className='flex flex-col gap-6 lg:flex-row lg:justify-between container lg:mx-auto lg:py-28'>
             <div className='flex flex-col gap-6 lg:basis-3/5'>
                 {
-                    cart.map(item => <ReviewItems key={item.id} item={item} handleRemoveFromCart={handleRemoveFromCart} />)
+                    cart.map(item => <ReviewItems key={item._id} item={item} handleRemoveFromCart={handleRemoveFromCart} />)
                 }
             </div>
             <div className='lg:basis-2/5'>
